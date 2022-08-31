@@ -1,16 +1,9 @@
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
-
-<head>
-  <meta charset="utf-8">
-  <title>Task Tracker</title>
-  <link rel="stylesheet" href="css/styles.css">
-</head>
+<%- include("partials/header") -%>
 
 <body>
   <!-- display current day of week -->
   <div id="heading" class="box">
-    <h1> <%= kindOfDay %> </h1>
+    <h1> <%= listTitle %> </h1>
   </div>
 
   <div class="box">
@@ -19,19 +12,27 @@
     <% for (let i = 0; i < newListItems.length; i++) { %>
     <div class="item">
       <input type="checkbox">
-      <p class="item"> <%= newListItems[i] %> </p>
+       <p class="item <%= className[i] %>"> <%= newListItems[i] %> </p>
     </div>
     <% } %>
 
+      <!-- / = home route -->
     <form class="item" action="/" method="post">
       <input type="text" name="newItem" placeholder="New Task" autocomplete="off">
-      <button type="submit" name="button">+</button>
+      <button id="plus-button" type="button" name="list" value=<%= listTitle %>>+</button>
+      <div id="dropdown">
+        <div class="dropdown-item">
+          <button class="dropdown-btn" type="submit" name="className" value=''>Normal</button>
+        </div>
+        <div class="dropdown-item">
+          <button class="dropdown-btn" type="submit" name="className" value='urgent'>Urgent</button>
+        </div>
+        <div class="dropdown-item">
+          <button class="dropdown-btn" type="submit" name="className" value='unimportant'>Unimportant</button>
+        </div>
+      </div>
     </form>
 
   </div>
 
-
-  <!-- / = home route -->
-
-
-</html>
+  <%- include('partials/footer') -%>
